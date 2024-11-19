@@ -22,4 +22,13 @@ public class Book {
     public String getIsbn() {
         return isbn;
     }
+
+    public void setTitle(String title) {
+    }
+
+    public void setAuthor(String author) {
+    }
+
+    public void setIsbn(String isbn) {
+    }
 }

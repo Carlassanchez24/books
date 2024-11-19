@@ -59,11 +59,18 @@ public class BookController {
         Optional<Book> optionalBook = bookRepository.findByIsbn(isbn);
 
         if (optionalBook.isPresent()) {
-            bookRepository.deleteByIsbn(isbn);
-            bookRepository.save(updatedBook);
+            Book existingBook = optionalBook.get();
+
+            existingBook.setTitle(updatedBook.getTitle());
+            existingBook.setAuthor(updatedBook.getAuthor());
+            existingBook.setIsbn(updatedBook.getIsbn());
+
+            bookRepository.save(existingBook);
+
             return new ResponseEntity<>("Libro actualizado", HttpStatus.OK);
         }
 
         return new ResponseEntity<>("Libro no encontrado", HttpStatus.NOT_FOUND);
     }
+
 }
